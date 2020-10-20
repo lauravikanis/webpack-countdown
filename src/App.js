@@ -7,53 +7,37 @@ export function App() {
     children: [
       createElement("div", {
         className: "time",
-        innerText: createCountdownTimer(),
+        innerText: 10,
+      }),
+      createElement("input", {
+        className: "Input_Number",
       }),
       createElement("button", {
         classname: "startTimeButton",
         innerText: "Go!",
         onclick: () => {
-          createCountdownTimer();
+          // createCountdownTimer();
+          CountdownSubmit(getNumber());
         },
-      }),
-      createElement("input", {
-        className: "Input_Number",
       }),
     ],
   });
-  function createCountdownTimer() {
-    let sec = document.querySelector(".Input_Number");
+
+  function CountdownSubmit(sec) {
+    console.log(sec);
     let intervalId = setInterval(function () {
       document.querySelector(".time").innerText = sec;
       sec--;
       if (sec === 0) {
         clearInterval(intervalId);
+        alert("It's over now!");
       }
     }, 1000);
   }
+
+  function getNumber() {
+    const number = document.querySelector(".Input_Number").value;
+    return number;
+  }
   return app;
 }
-
-//   app.className = "startButton";
-//   app.innerHTML = "Start Countdown";
-
-//   // onclick function to start the countdown
-//   app.onclick = function startTimer() {
-//     let seconds = document.querySelector(".timer").textContent;
-//     let countdown = setInterval(function () {
-//       seconds--;
-//       document.querySelector(".timer").textContent = seconds;
-//       if (seconds <= 0) clearInterval(countdown);
-//     }, 1000);
-//   };
-
-//   return app;
-// }
-
-// export function Timer() {
-//   const timer = document.createElement("span");
-//   timer.className = "timer";
-//   timer.innerText = "20";
-
-//   return timer;
-// }
